@@ -5,4 +5,4 @@ app = FastAPI()
 
 @app.get("/hello/{name}")
 async def read_item(name):
-    return {"name ": name}
+    return {"name": name}
