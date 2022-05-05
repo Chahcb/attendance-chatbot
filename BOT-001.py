@@ -9,6 +9,7 @@ async def read_item(name):
     response = "Hello" + name
     return {response}
 
+
 def custom_openapi():
     if app.openapi_schema:
         return app.openapi_schema
@@ -18,6 +19,12 @@ def custom_openapi():
         description="Chatbot de présence à la cantine",
         routes=app.routes,
     )
+
+    # affiche le logo en haut à gauche
+    openapi_schema["info"]["x-logo"] = {
+        "url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"
+    }
+
     app.openapi_schema = openapi_schema
     return app.openapi_schema
 
