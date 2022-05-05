@@ -1,13 +1,24 @@
 from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
+from pydantic import BaseModel
+
+
+class Attendance(BaseModel):
+    user: str
+    attendance: str
 
 app = FastAPI()
 
 
 @app.get("/hello/{name}")
-async def read_item(name):
+async def read_name(name):
     response = "Hello" + name
     return {response}
+
+
+@app.post("/attendance")
+async def create_attendance(attendance: Attendance):
+    return attendance
 
 
 def custom_openapi():
