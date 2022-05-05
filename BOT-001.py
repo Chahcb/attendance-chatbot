@@ -4,8 +4,9 @@ from pydantic import BaseModel
 
 
 class Attendance(BaseModel):
-    user: str
+    firstname: str
     attendance: str
+
 
 app = FastAPI()
 
@@ -16,7 +17,7 @@ async def read_name(name):
     return {response}
 
 
-@app.post("/attendance")
+@app.post("/attendance/")
 async def create_attendance(attendance: Attendance):
     return attendance
 
