@@ -2,12 +2,11 @@ from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 from pydantic import BaseModel
 
-
 app = FastAPI()
 
 
 class Attendance(BaseModel):
-    firstname: str
+    displayName: str
     attendance: str
 
 
@@ -19,10 +18,11 @@ async def read_name(name):
 
 @app.post("/attendance/")
 async def create_attendance(attendance: Attendance):
-    return attendance
+    print("text : ", attendance.displayName, " : ", attendance.attendance)
+    return attendance.attendance
 
 
-def custom_openapi():
+def custom_documentation():
     if app.openapi_schema:
         return app.openapi_schema
     openapi_schema = get_openapi(
@@ -41,4 +41,4 @@ def custom_openapi():
     return app.openapi_schema
 
 
-app.openapi = custom_openapi
+app.openapi = custom_documentation
