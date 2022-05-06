@@ -18,8 +18,16 @@ async def read_name(name):
 
 @app.post("/attendance/")
 async def create_attendance(attendance: Attendance):
-    print("text : ", attendance.displayName, " : ", attendance.attendance)
-    return attendance.attendance
+    name = attendance.displayName
+    presence = []
+
+    for i in range(len(attendance.attendance)):
+        presence.append(attendance.attendance[i])
+        presence.append("|")
+        affichage_presence = ""
+        for word in presence:
+            affichage_presence += str(word)
+    print("text : ", name, " : ", affichage_presence)
 
 
 def custom_documentation():
@@ -31,11 +39,6 @@ def custom_documentation():
         description="Chatbot de présence à la cantine",
         routes=app.routes,
     )
-
-    # affiche le logo en haut à gauche
-    openapi_schema["info"]["x-logo"] = {
-        "url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"
-    }
 
     app.openapi_schema = openapi_schema
     return app.openapi_schema
