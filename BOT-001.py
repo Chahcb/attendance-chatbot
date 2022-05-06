@@ -3,17 +3,17 @@ from fastapi.openapi.utils import get_openapi
 from pydantic import BaseModel
 
 
+app = FastAPI()
+
+
 class Attendance(BaseModel):
     firstname: str
     attendance: str
 
 
-app = FastAPI()
-
-
 @app.get("/hello/{name}")
 async def read_name(name):
-    response = "Hello" + name
+    response = "Hello " + name
     return {response}
 
 
