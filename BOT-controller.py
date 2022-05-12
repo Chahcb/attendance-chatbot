@@ -47,11 +47,11 @@ async def read_name(name):
 async def create_attendance(attendance: Attendance):
     name = attendance.displayName
     presence = []
-    affichage_presence = ""
 
     for i in range(len(attendance.attendance)):
         presence.append(attendance.attendance[i])
         presence.append("|")
+        affichage_presence = ""
         for word in presence:
             affichage_presence += str(word)
     return {"text : ", name, " : ", affichage_presence}
