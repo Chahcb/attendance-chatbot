@@ -8,5 +8,6 @@ développé en python 3.9
 * lancé le programme avec la commande uvicorn BOT-controller:app -- reload
 
 
-Retrouvez la documentation http://.../documentation (à éditer)
 https://attendance-chatbot.herokuapp.com/
+
+Lien vers la documentation: https://attendance-chatbot.herokuapp.com/documentation
