@@ -2,21 +2,48 @@ from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 from pydantic import BaseModel
 
-app = FastAPI()
+description = """
+BOT pour simplifier l'écriture de la présence à la cantine dans le groupe google chat Présence 🚀
+
+Retourne un affichage simple et coloré:
+
+*  ✅ | ✅ | ✅ | ✅ | ✅ |
+*  ❌ | ❌ | ❌ | ❌ | ❌ |
+*  ❌ | ❌ | ✅ | ✅ | ❌ |
+"""
+
+tags_metadata = [
+    {
+        "name": "Nom",
+    },
+    {
+        "name": "Présence à la cantine",
+    },
+]
+
+app = FastAPI(openapi_tags=tags_metadata, docs_url="/documentation", redoc_url=None)
 
 
 class Attendance(BaseModel):
     displayName: str
     attendance: str
 
+    class Config:
+        schema_extra = {
+            "example": {
+                "displayName": "Charline",
+                "attendance": "oxxox",
+            }
+        }
 
-@app.get("/hello/{name}")
+
+@app.get("/hello/{name}", tags=["Nom"])
 async def read_name(name):
     response = "Hello " + name
     return {response}
 
 
-@app.post("/attendance/")
+@app.post("/attendance", tags=["Présence à la cantine"])
 async def create_attendance(attendance: Attendance):
     name = attendance.displayName
     presence = []
@@ -27,7 +54,7 @@ async def create_attendance(attendance: Attendance):
         affichage_presence = ""
         for word in presence:
             affichage_presence += str(word)
-    print("text : ", name, " : ", affichage_presence)
+    return {"text : ", name, " : ", affichage_presence}
 
 
 def custom_documentation():
@@ -36,7 +63,7 @@ def custom_documentation():
     openapi_schema = get_openapi(
         title="Attendance chatbot",
         version="1.0",
-        description="Chatbot de présence à la cantine",
+        description=description,
         routes=app.routes,
     )
 
