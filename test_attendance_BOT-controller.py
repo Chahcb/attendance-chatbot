@@ -1,16 +1,17 @@
 import unittest
-
+from BOT_controller import *
 
 class test_attendance(unittest.TestCase):
 
-    def full_attendance(self, attendance):
-        return attendance == "ooooo"
+    def full_attendance(self):
+        return "ooooo"
 
-    def no_attendance(self, attendance):
-        return attendance == "xxxxx"
+    def no_attendance(self):
+        return "xxxxx"
 
-    def test_full_attendance_should_be_be_true(self):
-        self.assertTrue(self.full_attendance("ooooo"))
+    def test_attendance(self):
+        if self.assertEqual("ooooo", self.full_attendance()):
+            return "full présence"
 
-    def test_no_attendance_should_be_be_true(self):
-        self.assertTrue(self.no_attendance("xxxxx"))
+        elif self.assertEqual("xxxxx", self.no_attendance()):
+            return "No présence"
