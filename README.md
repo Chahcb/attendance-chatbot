@@ -10,5 +10,4 @@ développé en python 3.9
 
 https://attendance-chatbot.herokuapp.com/
 
-Lien vers la documentation: https://attendance-chatbot.herokuapp.com/documentation  
-Commande pour lancer les tests : python -m unittest AttendanceChatbotTest.AttendanceTest
+Lien vers la documentation: https://attendance-chatbot.herokuapp.com/documentation
