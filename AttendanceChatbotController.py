@@ -44,14 +44,35 @@ async def read_name(name):
 
 
 @app.post("/attendance", tags=["Présence à la cantine"])
-async def create_attendance(info_attendance: Attendance):
+def create_attendance(info_attendance: Attendance):
     name = info_attendance.displayName
-    presence = ""
+    presence: str = ""
 
     for i in range(len(info_attendance.attendance)):
-        presence += info_attendance.attendance[i] + "|"
+
+        if info_attendance.attendance[i] == 'o' or \
+                info_attendance.attendance[i] == 'O' or \
+                info_attendance.attendance[i] == '0' or \
+                info_attendance.attendance[i] == 'v' or \
+                info_attendance.attendance[i] == 'V':
+
+            presence += "✅|"
+
+        elif info_attendance.attendance[i] == 'x' or \
+                info_attendance.attendance[i] == 'X' or \
+                info_attendance.attendance[i] == 'n' or \
+                info_attendance.attendance[i] == 'N':
+
+            presence += "❌|"
+
+        elif info_attendance.attendance[i] == '?':
+            presence += "❓|"
+
+        else:
+            presence += " ERROR |"
+
     presence = presence.rstrip(presence[-1])
-    return {"text : ", name, " : ", presence}
+    return {name, presence}
 
 
 def custom_documentation():
