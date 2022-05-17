@@ -5,23 +5,23 @@ from fastapi.openapi.utils import get_openapi
 description = """
 BOT pour simplifier l'écriture de la présence à la cantine dans le groupe google chat Présence 🚀
 
+## Attendance 
+
 Retourne un affichage simple et coloré:
 
-*  ✅ | ✅ | ✅ | ✅ | ✅ |
-*  ❌ | ❌ | ❌ | ❌ | ❌ |
-*  ❌ | ❌ | ✅ | ✅ | ❌ |
+*  ✅ | ✅ | ✅ | ✅ | ✅
+*  ❌ | ❌ | ❌ | ❌ | ❌
+*  ❌ | ❌ | ✅ | ✅ | ❌
+
+## Lien utile
 """
 
 tags_metadata = [
-    {
-        "name": "Nom",
-    },
-    {
-        "name": "Présence à la cantine",
-    },
+    {"name": "Nom", },
+    {"name": "Présence à la cantine", },
 ]
 
-app = FastAPI(openapi_tags=tags_metadata, docs_url="/documentation", redoc_url=None)
+app = FastAPI(openapi_tags=tags_metadata, docs_url="/documentation", redoc_url=None, title="Attendance chatbot")
 
 
 def custom_documentation():
@@ -31,6 +31,10 @@ def custom_documentation():
         title="Attendance chatbot",
         version="1.0",
         description=description,
+        license_info={
+            "name": "Documentation FastApi",
+            "url": "https://fastapi.tiangolo.com/",
+        },
         routes=app.routes,
     )
 
