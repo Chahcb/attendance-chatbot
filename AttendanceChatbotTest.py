@@ -23,3 +23,7 @@ class AttendanceTest(unittest.TestCase):
     def test_some_attendance(self):
         self.assertEqual(create_attendance(Attendance(displayName='Rose', attendance='oooxx')), {'Rose', '✅|✅|✅|❌|❌'})
         self.assertEqual(create_attendance(Attendance(displayName='Rose', attendance='vo0xN')), {'Rose', '✅|✅|✅|❌|❌'})
+
+    def test_error_attendance(self):
+        self.assertEqual(create_attendance(Attendance(displayName='Fleur', attendance='dlcsd')), {'Fleur', ' ERROR | ERROR | ERROR | ERROR | ERROR '})
+        self.assertEqual(create_attendance(Attendance(displayName='Fleur', attendance='DsgQM')), {'Fleur', ' ERROR | ERROR | ERROR | ERROR | ERROR '})
