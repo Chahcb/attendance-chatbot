@@ -3,7 +3,6 @@ from pydantic import BaseModel
 
 
 class Attendance(BaseModel):
-    displayName: str
     attendance: str
 
     class Config:
@@ -23,7 +22,6 @@ async def return_name(name):
 
 @app.post("/attendance", tags=["Présence à la cantine"])
 def create_attendance(info_attendance: Attendance):
-    name = info_attendance.displayName
     presence: str = ""
 
     for i in range(len(info_attendance.attendance)):
@@ -50,4 +48,4 @@ def create_attendance(info_attendance: Attendance):
             presence += " ERROR |"
 
     presence = presence.rstrip(presence[-1])
-    return {name, presence}
+    return {presence}
