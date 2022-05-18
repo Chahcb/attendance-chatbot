@@ -34,17 +34,17 @@ def create_attendance(info_attendance: Attendance):
                 info_attendance.attendance[i] == 'v' or \
                 info_attendance.attendance[i] == 'V':
 
-            presence += "✅|"
+            presence += " ✅ |"
 
         elif info_attendance.attendance[i] == 'x' or \
                 info_attendance.attendance[i] == 'X' or \
                 info_attendance.attendance[i] == 'n' or \
                 info_attendance.attendance[i] == 'N':
 
-            presence += "❌|"
+            presence += " ❌ |"
 
         elif info_attendance.attendance[i] == '?':
-            presence += "❓|"
+            presence += " ❓ |"
 
         else:
             presence += " ERROR |"
