@@ -1,5 +1,5 @@
 import unittest
-from infrastructure.AttendanceChatbotController import *
+from AttendanceChatbotController import *
 
 
 class AttendanceTest(unittest.TestCase):
