@@ -5,26 +5,55 @@ from AttendanceChatbotController import *
 class AttendanceTest(unittest.TestCase):
 
     def test_full_attendance(self):
-        self.assertEqual({' ✅ | ✅ | ✅ | ✅ | ✅ '}, create_attendance(Attendance(attendance='ooooo')))
-        self.assertEqual({' ✅ | ✅ | ✅ | ✅ | ✅ '}, create_attendance(Attendance(attendance='OOOOO')))
-        self.assertEqual({' ✅ | ✅ | ✅ | ✅ | ✅ '}, create_attendance(Attendance(attendance='00000')))
-        self.assertEqual({' ✅ | ✅ | ✅ | ✅ | ✅ '}, create_attendance(Attendance(attendance='vvvvv')))
-        self.assertEqual({' ✅ | ✅ | ✅ | ✅ | ✅ '}, create_attendance(Attendance(attendance='VVVVV')))
-        self.assertEqual({' ✅ | ✅ | ✅ | ✅ | ✅ '}, create_attendance(Attendance(attendance='VvOo0')))
+        self.assertEqual({"@Jean Michel :  ✅ | ✅ | ✅ | ✅ | ✅ "}, create_attendance(
+            Message(type='MESSAGE', message=Attendance(text='ooooo', sender=Name(displayName="Jean Michel")),
+                    space=Room(displayName='some room'))))
+        self.assertEqual({"@Jean Michel :  ✅ | ✅ | ✅ | ✅ | ✅ "}, create_attendance(
+            Message(type='MESSAGE', message=Attendance(text='OOOOO', sender=Name(displayName="Jean Michel")),
+                    space=Room(displayName='some room'))))
+        self.assertEqual({"@Jean Michel :  ✅ | ✅ | ✅ | ✅ | ✅ "}, create_attendance(
+            Message(type='MESSAGE', message=Attendance(text='vvvvv', sender=Name(displayName="Jean Michel")),
+                    space=Room(displayName='some room'))))
+        self.assertEqual({"@Jean Michel :  ✅ | ✅ | ✅ | ✅ | ✅ "}, create_attendance(
+            Message(type='MESSAGE', message=Attendance(text='VVVVV', sender=Name(displayName="Jean Michel")),
+                    space=Room(displayName='some room'))))
+        self.assertEqual({"@Jean Michel :  ✅ | ✅ | ✅ | ✅ | ✅ "}, create_attendance(
+            Message(type='MESSAGE', message=Attendance(text='00000', sender=Name(displayName="Jean Michel")),
+                    space=Room(displayName='some room'))))
 
     def test_no_attendance(self):
-        self.assertEqual({' ❌ | ❌ | ❌ | ❌ | ❌ '}, create_attendance(Attendance(attendance='xxxxx')))
-        self.assertEqual({' ❌ | ❌ | ❌ | ❌ | ❌ '}, create_attendance(Attendance(attendance='XXXXX')))
-        self.assertEqual({' ❌ | ❌ | ❌ | ❌ | ❌ '}, create_attendance(Attendance(attendance='nnnnn')))
-        self.assertEqual({' ❌ | ❌ | ❌ | ❌ | ❌ '}, create_attendance(Attendance(attendance='NNNNN')))
+        self.assertEqual({'@Jean Michel :  ❌ | ❌ | ❌ | ❌ | ❌ '}, create_attendance(
+            Message(type='MESSAGE', message=Attendance(text='xxxxx', sender=Name(displayName="Jean Michel")),
+                    space=Room(displayName='some room'))))
+        self.assertEqual({'@Jean Michel :  ❌ | ❌ | ❌ | ❌ | ❌ '}, create_attendance(
+            Message(type='MESSAGE', message=Attendance(text='XXXXX', sender=Name(displayName="Jean Michel")),
+                    space=Room(displayName='some room'))))
+        self.assertEqual({'@Jean Michel :  ❌ | ❌ | ❌ | ❌ | ❌ '}, create_attendance(
+            Message(type='MESSAGE', message=Attendance(text='nnnnn', sender=Name(displayName="Jean Michel")),
+                    space=Room(displayName='some room'))))
+        self.assertEqual({'@Jean Michel :  ❌ | ❌ | ❌ | ❌ | ❌ '}, create_attendance(
+            Message(type='MESSAGE', message=Attendance(text='NNNNN', sender=Name(displayName="Jean Michel")),
+                    space=Room(displayName='some room'))))
 
     def test_idk_attendance(self):
-        self.assertEqual({' ❓ | ❓ | ❓ | ❓ | ❓ '}, create_attendance(Attendance(attendance='?????')))
+        self.assertEqual({'@Jean Michel :  ❓ | ❓ | ❓ | ❓ | ❓ '}, create_attendance(
+            Message(type='MESSAGE', message=Attendance(text='?????', sender=Name(displayName="Jean Michel")),
+                    space=Room(displayName='some room'))))
 
     def test_some_attendance(self):
-        self.assertEqual({' ✅ | ✅ | ✅ | ❌ | ❌ '}, create_attendance(Attendance(attendance='oooxx')))
-        self.assertEqual({' ✅ | ✅ | ✅ | ❌ | ❌ '}, create_attendance(Attendance(attendance='vo0xN')))
+        self.assertEqual({'@Jean Michel :  ✅ | ✅ | ✅ | ❌ | ❌ '}, create_attendance(
+            Message(type='MESSAGE', message=Attendance(text='0OvnX', sender=Name(displayName="Jean Michel")),
+                    space=Room(displayName='some room'))))
+        self.assertEqual({'@Jean Michel :  ✅ | ✅ | ✅ | ❌ | ❌ '}, create_attendance(
+            Message(type='MESSAGE', message=Attendance(text='oV0Nx', sender=Name(displayName="Jean Michel")),
+                    space=Room(displayName='some room'))))
 
     def test_error_attendance(self):
-        self.assertEqual({' ERROR | ERROR | ERROR | ERROR | ERROR '}, create_attendance(Attendance(attendance='dlcsd')))
-        self.assertEqual({' ERROR | ERROR | ERROR | ERROR | ERROR '}, create_attendance(Attendance(attendance='DsgQM')))
+        self.assertEqual({'@Jean Michel :  ERROR | ERROR | ERROR | ERROR | ERROR '},
+                         create_attendance(Message(type='MESSAGE', message=Attendance(text='ASMQb', sender=Name(
+                             displayName="Jean Michel")),
+                                                   space=Room(displayName='some room'))))
+        self.assertEqual({'@Jean Michel :  ERROR | ERROR | ERROR | ERROR | ERROR '},
+                         create_attendance(Message(type='MESSAGE', message=Attendance(text='a8fdh', sender=Name(
+                             displayName="Jean Michel")),
+                                                   space=Room(displayName='some room'))))
