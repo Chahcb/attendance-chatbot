@@ -60,5 +60,5 @@ def createAttendance(attendance: Message):
 
         else:
             presence += " ERROR |"
-    presence = presence.rstrip(presence[-1])
+    presence = presence.rstrip(presence[-2:])
     return presence
