@@ -12,4 +12,4 @@ def return_name(name):
 def create_attendance(info_attendance: Message):
     name = info_attendance.message.sender.displayName
     result_attendance = createAttendance(info_attendance)
-    return {'text ': '@' + name + ' : ' + result_attendance}
+    return {'text': '@' + name + ' : ' + result_attendance}
